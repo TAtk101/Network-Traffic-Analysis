@@ -56,6 +56,3 @@ These include searches for:
 - Protocol distribution
 - Source-to-destination traffic mapping
 
----
-
-## Project Structure
