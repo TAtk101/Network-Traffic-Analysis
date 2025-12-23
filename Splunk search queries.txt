@@ -1,0 +1,20 @@
+# Protocol Packet Size Analysis
+source="Wireshark_CSV.csv"
+| stats avg("Length") as Avg_Packet_Size by Protocol
+| sort - Avg_Packet_Size
+
+# Top Destination IPs
+source="Wireshark_CSV.csv"
+| stats count by Destination
+| sort -count
+| head 10
+
+# Network Protocol Distribution
+source="Wireshark_CSV.csv"
+| stats count by Protocol
+| sort -count
+
+# Internal vs External Traffic
+source="Wireshark_CSV.csv"
+| eval TrafficType=if(like(Destination,"192.168.%"),"Internal","External")
+| stats count by TrafficType
